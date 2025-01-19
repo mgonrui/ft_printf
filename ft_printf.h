@@ -15,7 +15,9 @@ int ft_printf(char const *, ...);
 
 // helper functions
 int ft_putchar(char c);
-int ft_putnbr_any_base(int n, char *base);//, int len_base);
+int ft_redirect_hex_neg(unsigned long long n, char *base);
+int ft_print_hex(unsigned long long n, char *base);
+int ft_print_dec(long long n, char *base);
 int ft_putstr(char *s);
 
 # endif // FT_PRINTF_H_

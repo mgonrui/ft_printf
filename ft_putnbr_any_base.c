@@ -12,54 +12,52 @@
 
 #include "ft_printf.h"
 
-void write_numbers(int n, char *base)
+int ft_calc_ret_value(unsigned long long n, int len_base)
 {
-	int len_base = 0;
-	while (base[len_base + 1] != '\0')
-		len_base++;
+	int n_chars;
+	n_chars = 0;
+
+	while(n > ((unsigned long long)len_base - 1))
+	{
+		n = n / len_base;
+		n_chars++;
+	}
+	n_chars++;
+	return n_chars;
+}
+
+
+int ft_print_hex(unsigned long long n, char *base)
+{
+	if (n > 15)
+	{
+		ft_print_hex(n / 16 , base);
+		ft_print_hex(n % 16 , base);
+	}
+	else
+		ft_putchar(base[n]);
+	return ft_calc_ret_value(n, 16);
+
+}
+
+int ft_print_dec(long long n, char *base)
+{
+	int sign;
+	sign = 0;
 
 	if (n < 0)
 	{
 		ft_putchar('-');
 		n = -n;
-		ft_putnbr_any_base(n, base);
-		return ;
+		sign = 1;
 	}
-	else if (n > len_base)
+	if (n > 9)
 	{
-		ft_putnbr_any_base(n / (len_base + 1), base);
-		ft_putnbr_any_base(n % (len_base + 1), base);
+		ft_print_dec(n / 10, base);
+		ft_print_dec(n % 10, base);
 	}
 	else
 		ft_putchar(base[n]);
-	return ;
-}
+	return ft_calc_ret_value(n, 10) + sign;
 
-int ft_putnbr_any_base(int n, char *base)
-{
-	int n_chars;
-	int ncopy;
-	ncopy = n;
-
-	n_chars = 0;
-
-	if (n == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return 11;
-	}
-
-	if (ncopy < 0)
-	{
-		ncopy = -ncopy;
-		n_chars++;
-	}
-	while(ncopy > 9)
-	{
-		ncopy = ncopy / 10;
-		n_chars++;
-	}
-	n_chars++;
-	write_numbers(n, base);
-	return n_chars;
 }
