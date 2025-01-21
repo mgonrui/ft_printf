@@ -26,20 +26,6 @@ int ft_calc_ret_value(unsigned long long n, int len_base)
 	return n_chars;
 }
 
-
-int ft_print_hex(unsigned long long n, char *base)
-{
-	if (n > 15)
-	{
-		ft_print_hex(n / 16 , base);
-		ft_print_hex(n % 16 , base);
-	}
-	else
-		ft_putchar(base[n]);
-	return ft_calc_ret_value(n, 16);
-
-}
-
 int ft_print_dec(long long n, char *base)
 {
 	int sign;
@@ -60,4 +46,25 @@ int ft_print_dec(long long n, char *base)
 		ft_putchar(base[n]);
 	return ft_calc_ret_value(n, 10) + sign;
 
+}
+
+int ft_print_hex(unsigned long long n, char *base)
+{
+	if (n > 15)
+	{
+		ft_print_hex(n / 16 , base);
+		ft_print_hex(n % 16 , base);
+	}
+	else
+		ft_putchar(base[n]);
+	return ft_calc_ret_value(n, 16);
+
+}
+
+int ft_print_poi(unsigned long long n, char *base)
+{
+	if (n == 0)
+		return ft_putstr("(nil)");
+	ft_putstr("0x");
+	return (ft_print_hex(n, base) + 2);
 }

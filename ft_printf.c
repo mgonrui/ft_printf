@@ -29,7 +29,7 @@ int check_format(const char *format, va_list args)
     else if (*format == 'X')
         ret_value = ft_print_hex(va_arg(args, unsigned int), "0123456789ABCDEF");
     else if (*format == 'p')
-        ret_value = 0;//ft_putnbr_any_base(va_arg(args, int), "0123456789ABCDEF");
+        ret_value = ft_print_poi(va_arg(args, unsigned long long int), "0123456789abcdef");
     return ret_value;
 }
 

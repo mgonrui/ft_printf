@@ -1,19 +1,22 @@
 #include "ft_printf.h"
 
 
-int main (int argc, char **argv)
+int main (void)
 {
-	if (argc <= 1)
-	{
-		printf("You did not write any args\n");
-		return (0);
-	}
+	/* if (argc <= 1) */
+	/* { */
+	/* 	printf("You did not write any args\n"); */
+	/* 	return (0); */
+	/* } */
 	int ret_value;
-	ret_value = ft_printf("%d", atoi(argv[1]));
+	/* int number = 42; */
+	/* int *p_number = &number; */
+
+	ret_value = ft_printf("%s", NULL);
 	printf("\nret value: %d\n", ret_value);
 
 	printf("\nprintf:\n");
-	ret_value = printf("%d", atoi(argv[1]));
+	ret_value = printf("%s", (char *)NULL);
 	printf("\nret value: %d\n", ret_value);
 
 	return (0);
